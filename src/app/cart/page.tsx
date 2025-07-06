@@ -78,7 +78,7 @@ const CartPage: React.FC = () => {
     updateQuantity, 
     clearCart,
     getTotalItems,
-    getTotalPrice,
+    // getTotalPrice,
     error 
   } = useCartStore();
 
