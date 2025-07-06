@@ -8,7 +8,7 @@ A modern, responsive e-commerce application built with Next.js 14, TypeScript, a
 
 ## 📋 Project Overview
 
-### Requirements Met ✅
+<!-- ### Requirements Met ✅ -->
 
 - **Modern React Development**: Built with Next.js 14, TypeScript, and React 18
 - **Responsive Design**: Mobile-first approach with Tailwind CSS
@@ -66,7 +66,8 @@ A modern, responsive e-commerce application built with Next.js 14, TypeScript, a
 
 - **Caching**: Intelligent caching with stale-while-revalidate
 - **Background Updates**: Automatic background refetching
-- **Error Handling**: Built-in error states and retry logic
+- **Error Handling**: Built-in error states and retry logic with custom error handling ui for better user experience
+
 - **Optimistic Updates**: Smooth user experience
 
 ## 📁 Project Structure
@@ -138,7 +139,7 @@ src/
 ### 4. **Bundle Optimization**
 
 - **Tree Shaking**: Remove unused code
-- **Minification**: SWC for fast builds
+- **Minification**: SWC for fast builds, this is not really minification, but it is a fast build tool
 - **Compression**: Gzip compression enabled
 
 ## 🔧 Key Features
@@ -195,31 +196,9 @@ npm run build
 
 # Start production server
 npm start
-```
 
-### Environment Variables
-
-```env
-NEXT_PUBLIC_BASE_URL=http://localhost:3000
-```
-
-## 📊 Performance Metrics
-
-### Core Web Vitals (Target)
-
-- **LCP**: < 2.5s (Largest Contentful Paint)
-- **FID**: < 100ms (First Input Delay)
-- **CLS**: < 0.1 (Cumulative Layout Shift)
-- **FCP**: < 1.8s (First Contentful Paint)
-
-### Optimization Results
-
-- **Bundle Size**: ~200KB (gzipped)
-- **Image Optimization**: 95% size reduction
-- **Loading Speed**: < 2s on 3G
-- **Lighthouse Score**: 95+ across all metrics
-
-## 🧪 Testing Strategy
+# Test
+npm run test
 
 ### Manual Testing
 
@@ -228,12 +207,6 @@ NEXT_PUBLIC_BASE_URL=http://localhost:3000
 - User flow validation
 - Performance testing
 
-### Automated Testing (Future)
-
-- Unit tests with Jest
-- Integration tests with React Testing Library
-- E2E tests with Playwright
-- Performance monitoring
 
 ## 🔄 Development Workflow
 
@@ -249,26 +222,7 @@ NEXT_PUBLIC_BASE_URL=http://localhost:3000
 - Vercel for hosting
 - Automatic deployments on push
 - Environment-specific builds
-- Performance monitoring
 
-## 📈 Future Enhancements
-
-### Planned Features
-
-- User authentication
-- Wishlist functionality
-- Product reviews and ratings
-- Advanced filtering and sorting
-- Payment integration
-- Admin dashboard
-
-### Technical Improvements
-
-- PWA capabilities
-- Offline support
-- Advanced caching strategies
-- Real-time updates
-- Analytics integration
 
 ## 🤝 Contributing
 
@@ -286,10 +240,11 @@ This project is licensed under the MIT License.
 
 **Ronald Okpara**
 
-- GitHub: [@your-username]
-- LinkedIn: [Your LinkedIn]
-- Portfolio: [Your Portfolio]
+- GitHub: [@fats-cmd]
+- LinkedIn: [https://www.linkedin.com/in/ronald-okpara-58a5652b8/]
+[View Live Demo](https://mini-commerce.vercel.app)
+
 
 ---
 
-**Built with ❤️ using Next.js, TypeScript, and Tailwind CSS**
+**Built using Next.js, TypeScript, and Tailwind CSS**
