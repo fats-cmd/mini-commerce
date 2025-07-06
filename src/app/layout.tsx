@@ -21,11 +21,10 @@ export const metadata: Metadata = {
     "online shopping",
   ],
   authors: [{ name: "Ronald Okpara", url: "https://mini-commerce.vercel.app" }],
-  creator: "Your Name",
+  creator: "Ronald Okpara",
   openGraph: {
     title: "Mini Commerce",
     description: "A simple e-commerce application built with Next.js",
-    // url: "https://mini-commerce.vercel.app",
     siteName: "Mini Commerce",
     images: [
       {
@@ -56,6 +55,7 @@ export const metadata: Metadata = {
 import ReactQueryProvider from "@/Providers/ReactQueryProvider";
 import { ScrollContextProvider } from "@/context/scrollContextProvider";
 import { SearchProvider } from "@/context/SearchContext";
+import ThemeProvider from "@/components/ThemeProvider";
 
 export default function RootLayout({
   children,
@@ -65,7 +65,6 @@ export default function RootLayout({
   return (
     <html lang="en">
       <head>
-        {/* Critical LCP preloads */}
         <link
           rel="preload"
           href="/assets/images/carousel-images-optimized/carousel-image3-lcp.webp"
@@ -79,14 +78,15 @@ export default function RootLayout({
           as="fetch"
           crossOrigin="anonymous"
         />
-        {/* DNS prefetch for external resources */}
         <link rel="dns-prefetch" href="//images.unsplash.com" />
       </head>
-      <body className={`${inter.variable} antialiased font-sans`}>
+      <body className={`${inter.variable} antialiased font-sans bg-background text-foreground`}>
         <ReactQueryProvider>
-          <SearchProvider>
-            <ScrollContextProvider>{children}</ScrollContextProvider>
-          </SearchProvider>
+          <ThemeProvider>
+            <SearchProvider>
+              <ScrollContextProvider>{children}</ScrollContextProvider>
+            </SearchProvider>
+          </ThemeProvider>
         </ReactQueryProvider>
       </body>
     </html>

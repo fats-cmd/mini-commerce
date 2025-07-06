@@ -5,12 +5,7 @@ import { useRouter } from 'next/navigation';
 import { ShoppingCart, Plus, Minus, Trash2, ArrowLeft, ShoppingBag, CreditCard, Lock } from 'lucide-react';
 
 import useCartStore, { CartItem } from '@/stores/useCartStore';
-import dynamic from 'next/dynamic';
-
-const CartItemComponent = dynamic(() => import('@/components/CartItem'), {
-  loading: () => <div className="h-24 bg-gray-100 rounded-lg animate-pulse" />,
-  ssr: false,
-});
+import CartItemComponent from '@/components/CartItem';
 
 interface CartSummaryProps {
   onCheckout: () => void;

@@ -1,4 +1,4 @@
-# Mini Commerce - Frontend React Assessment
+# Mini Commerce - Frontend 
 
 A modern, responsive e-commerce application built with Next.js 14, TypeScript, and Tailwind CSS. This project demonstrates advanced frontend development skills with a focus on performance, user experience, and code quality.
 

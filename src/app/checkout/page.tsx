@@ -16,22 +16,7 @@ const CheckoutPage: React.FC = () => {
     }, 1500);
   };
 
-  if (items.length === 0) {
-    return (
-      <div className="min-h-screen flex flex-col items-center justify-center bg-gray-50">
-        <h2 className="text-2xl font-bold mb-4">Your cart is empty</h2>
-        <p className="mb-6 text-gray-600">
-          Add some products before checking out.
-        </p>
-        <button
-          onClick={() => router.push("/")}
-          className="bg-blue-500 hover:bg-blue-600 text-white px-6 py-3 rounded-lg font-medium"
-        >
-          Go to Home
-        </button>
-      </div>
-    );
-  }
+
 
   return (
     <div className="min-h-screen flex flex-col items-center justify-center bg-gray-50 px-4 py-12">

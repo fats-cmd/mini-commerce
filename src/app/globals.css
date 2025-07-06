@@ -1,22 +1,30 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@tailwind base;@tailwind components;@tailwind utilities;
 
-/* :root {
+:root {
   --background: #ffffff;
   --foreground: #171717;
-} */
+  --card-background: #ffffff;
+  --card-foreground: #171717;
+  --border: #e5e7eb;
+  --input: #e5e7eb;
+  --primary: #f97316;
+  --primary-foreground: #ffffff;
+}
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+[data-theme='dark'] {
+  --background: #0a0a0a;
+  --foreground: #ededed;
+  --card-background: #171717;
+  --card-foreground: #ededed;
+  --border: #27272a;
+  --input: #27272a;
+  --primary: #f97316;
+  --primary-foreground: #ffffff;
 }
 
 body {
-  /* color: var(--foreground);
-  background: var(--background); */
+  color: var(--foreground);
+  background: var(--background);
   font-family: Arial, Helvetica, sans-serif;
 }
 
@@ -87,17 +95,17 @@ body {
 }
 
 .category-scrollbar::-webkit-scrollbar-track {
-  background: #f1f5f9;
+  background: var(--card-background);
   border-radius: 4px;
 }
 
 .category-scrollbar::-webkit-scrollbar-thumb {
-  background: #cbd5e1;
+  background: var(--border);
   border-radius: 4px;
 }
 
 .category-scrollbar::-webkit-scrollbar-thumb:hover {
-  background: #94a3b8;
+  background: var(--input);
 }
 
 /* Smooth font rendering */
@@ -108,7 +116,7 @@ body {
 
 /* Better focus styles */
 button:focus-visible {
-  outline: 2px solid #f97316;
+  outline: 2px solid var(--primary);
   outline-offset: 2px;
 }
 
@@ -116,8 +124,6 @@ button:focus-visible {
 .text-shadow-lg {
   text-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
 }
-
-/* product grid external styles */
 
 /* Line clamp utilities */
 .line-clamp-1 {
@@ -141,68 +147,28 @@ button:focus-visible {
   overflow: hidden;
 }
 
-/* Enhanced shimmer animation */
-@keyframes shimmer {
-  0% {
-    background-position: -200% 0;
-  }
-  100% {
-    background-position: 200% 0;
-  }
-}
-
-.animate-shimmer {
-  animation: shimmer 2s infinite;
-}
-
-/* Fade in up animation */
-@keyframes fade-in-up {
-  from {
-    opacity: 0;
-    transform: translateY(30px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-.animate-fade-in-up {
-  animation: fade-in-up 0.6s ease-out both;
-}
-
-/* Hover glow effect */
-.hover-glow {
-  transition: all 0.3s ease;
-}
-
-.hover-glow:hover {
-  box-shadow: 0 10px 40px rgba(249, 115, 22, 0.3);
-}
-
-/* Custom scrollbar for product grid */
+/* Product grid styles */
 .product-grid::-webkit-scrollbar {
   width: 6px;
 }
 
 .product-grid::-webkit-scrollbar-track {
-  background: #f1f5f9;
+  background: var(--card-background);
   border-radius: 6px;
 }
 
 .product-grid::-webkit-scrollbar-thumb {
-  background: #cbd5e1;
+  background: var(--border);
   border-radius: 6px;
 }
 
 .product-grid::-webkit-scrollbar-thumb:hover {
-  background: #94a3b8;
+  background: var(--input);
 }
 
-/* Pulse animation for loading states */
+/* Animations */
 @keyframes pulse {
-  0%,
-  100% {
+  0%, 100% {
     opacity: 1;
   }
   50% {
@@ -214,21 +180,17 @@ button:focus-visible {
   animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
 }
 
-/* Smooth transitions for all interactive elements */
+/* Transitions */
 .transition-all {
   transition-property: all;
   transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-/* Enhanced focus states */
-.focus-visible {
-  outline: 2px solid #f97316;
-  outline-offset: 2px;
-}
-
-/* Product card hover effects */
+/* Product card effects */
 .product-card {
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  background: var(--card-background);
+  color: var(--card-foreground);
 }
 
 .product-card:hover {
@@ -236,15 +198,7 @@ button:focus-visible {
   box-shadow: 0 25px 50px rgba(0, 0, 0, 0.15);
 }
 
-/* Gradient text effect */
-.gradient-text {
-  background: linear-gradient(135deg, #f97316, #ea580c);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-}
-
-/* Button hover effects */
+/* Button effects */
 .btn-hover {
   position: relative;
   overflow: hidden;
@@ -257,12 +211,7 @@ button:focus-visible {
   left: -100%;
   width: 100%;
   height: 100%;
-  background: linear-gradient(
-    90deg,
-    transparent,
-    rgba(255, 255, 255, 0.2),
-    transparent
-  );
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
   transition: left 0.5s;
 }
 

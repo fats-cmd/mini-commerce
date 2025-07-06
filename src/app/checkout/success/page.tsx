@@ -1,25 +1,16 @@
-"use client";
-
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { CheckCircle2 } from "lucide-react";
-import { useRouter } from "next/navigation";
+import Link from "next/link";
 
-// i did this to generate a random order id for the user
-function generateOrderId() {
-  // just a simple way to get a random string, not cryptographically secure but good enough for demo
+const generateOrderId = () => {
   return (
     Math.random().toString(36).slice(2, 10) +
     Math.random().toString(36).slice(2, 10)
   );
-}
+};
 
-const SuccessPage: React.FC = () => {
-  const router = useRouter();
-  const [orderId, setOrderId] = useState("");
-
-  useEffect(() => {
-    setOrderId(generateOrderId());
-  }, []);
+const SuccessPage = () => {
+  const orderId = generateOrderId();
 
   return (
     <div className="min-h-screen flex flex-col items-center justify-center bg-gray-50 px-4 py-12 animate-fade-in-up">
@@ -36,12 +27,9 @@ const SuccessPage: React.FC = () => {
             Order ID: {orderId}
           </span>
         </p>
-        <button
-          onClick={() => router.push("/")}
-          className="bg-blue-500 hover:bg-blue-600 text-white px-8 py-3 rounded-lg font-semibold transition-colors shadow-md"
-        >
+        <Link href="/" className="bg-blue-500 hover:bg-blue-600 text-white px-8 py-3 rounded-lg font-semibold transition-colors shadow-md">
           Continue Shopping
-        </button>
+        </Link>
       </div>
     </div>
   );

@@ -9,24 +9,16 @@ import {
 } from "react-icons/fa";
 import { create } from "zustand";
 
-// Zustand store for dropdowns
 type DropdownState = {
   langOpen: boolean;
   setLangOpen: (open: boolean) => void;
 };
+
 const useDropdownStore = create<DropdownState>((set) => ({
   langOpen: false,
   setLangOpen: (open) => set({ langOpen: open }),
 }));
 
-//languages array
-const languages = [
-  { code: "en", label: "English" },
-  { code: "fr", label: "Français" },
-  { code: "es", label: "Español" },
-];
-
-//type for language dropdown state
 type LangDropdownState = {
   langOpen: boolean;
   selected: string;
@@ -34,7 +26,6 @@ type LangDropdownState = {
   setSelected: (code: string) => void;
 };
 
-// Zustand store to manage the state of the dropdown
 const useLangDropdownStore = create<LangDropdownState>((set) => ({
   langOpen: false,
   selected: "en",
@@ -42,7 +33,12 @@ const useLangDropdownStore = create<LangDropdownState>((set) => ({
   setSelected: (code) => set({ selected: code, langOpen: false }),
 }));
 
-// Language dropdown button component
+const languages = [
+  { code: "en", label: "English" },
+  { code: "es", label: "Español" },
+  { code: "fr", label: "Français" },
+];
+
 const LanguageDropdownButton: React.FC = () => {
   const langOpen = useLangDropdownStore((state) => state.langOpen);
   const setLangOpen = useLangDropdownStore((state) => state.setLangOpen);
@@ -51,7 +47,7 @@ const LanguageDropdownButton: React.FC = () => {
   return (
     <div className="relative">
       <button
-        className="flex items-center gap-1 text-gray-800 transition-colors font-medium focus:outline-none"
+        className="flex items-center gap-1 text-foreground hover:text-primary transition-colors font-medium focus:outline-none"
         aria-haspopup="listbox"
         aria-expanded={langOpen}
         tabIndex={0}
@@ -65,36 +61,34 @@ const LanguageDropdownButton: React.FC = () => {
         )}
       </button>
       {langOpen && (
-        <ul className="absolute left-0 mt-2 w-28 bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded shadow z-10">
-          {languages.map((l) => (
-            <li
-              key={l.code}
-              className={`px-3 py-2 cursor-pointer hover:bg-gray-100 dark:hover:bg-gray-700 ${
-                selected === l.code
-                  ? "font-semibold text-blue-600 dark:text-yellow-400"
-                  : ""
-              }`}
-              onClick={() => setSelected(l.code)}
+        <div
+          className="absolute top-full mt-1 bg-card border border-border rounded-lg shadow-lg py-1 w-32 z-50"
+          role="listbox"
+        >
+          {languages.map((lang) => (
+            <button
+              key={lang.code}
+              className="w-full text-left px-4 py-2 text-foreground hover:bg-primary/10 transition-colors"
+              onClick={() => setSelected(lang.code)}
               role="option"
-              aria-selected={selected === l.code}
+              aria-selected={selected === lang.code}
             >
-              {l.label}
-            </li>
+              {lang.label}
+            </button>
           ))}
-        </ul>
+        </div>
       )}
     </div>
   );
 };
 
-// Topbar component: contains the quick help button, language dropdown, and social icons
 const Topbar = () => {
   return (
-    <div className="bg-orange-400 shadow-md h-12 w-full text-xs md:text-sm">
+    <div className="bg-card border-b border-border h-12 w-full text-xs md:text-sm">
       <div className="max-w-6xl mx-auto px-2 md:px-4 h-full flex items-center justify-between">
         {/* Left: Quick Help */}
-        <div className="flex items-center gap-4 md:gap-6 text-gray-800 dark:text-gray-300">
-          <button className=" hover:text-white transition-colors font-medium focus:outline-none">
+        <div className="flex items-center gap-4 md:gap-6 text-foreground">
+          <button className="hover:text-primary transition-colors font-medium focus:outline-none">
             Quick Help
           </button>
           <LanguageDropdownButton />
@@ -106,7 +100,7 @@ const Topbar = () => {
             target="_blank"
             rel="noopener noreferrer"
             aria-label="Facebook"
-            className="text-gray-600 hover:text-white transition-colors"
+            className="text-foreground hover:text-primary transition-colors"
           >
             <FaFacebookF />
           </Link>
@@ -115,7 +109,7 @@ const Topbar = () => {
             target="_blank"
             rel="noopener noreferrer"
             aria-label="Twitter"
-            className="text-gray-600 hover:text-white transition-colors"
+            className="text-foreground hover:text-primary transition-colors"
           >
             <FaTwitter />
           </Link>
@@ -124,7 +118,7 @@ const Topbar = () => {
             target="_blank"
             rel="noopener noreferrer"
             aria-label="Instagram"
-            className="text-gray-600 hover:text-white transition-colors"
+            className="text-foreground hover:text-primary transition-colors"
           >
             <FaInstagram />
           </Link>
