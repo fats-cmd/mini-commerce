@@ -35,7 +35,7 @@ const ProductGrid: React.FC<ProductGridProps> = ({ search}) => {
         {/* Header with loading indicator */}
         <div className="flex items-center justify-between mb-8">
           <div className="flex items-center gap-3">
-            <h2 className="text-xl font-semibold text-gray-900">
+            <h2 className="text-lg md:text-xl font-semibold dark:text-white text-gray-900">
               Featured Products
             </h2>
             <div className="flex items-center gap-2 text-orange-500">
@@ -112,7 +112,7 @@ const ProductGrid: React.FC<ProductGridProps> = ({ search}) => {
           </span>
         </div>
         <div className="flex items-center gap-1">
-          <span className="text-xs text-gray-500">Sort by:</span>
+          <span className="text-xs dark:text-white text-gray-500">Sort by:</span>
           <select className="text-xs border border-gray-300 rounded-lg px-2 py-1 focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-transparent">
             <option>Popular</option>
             <option>Price: Low to High</option>
