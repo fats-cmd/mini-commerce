@@ -16,6 +16,7 @@ import {
   Truck,
 } from "lucide-react";
 import useCartStore, { Product } from "@/stores/useCartStore";
+import Image from "next/image";
 
 // Fetch products.json and find product by slug
 const fetchProductBySlug = async (slug: string): Promise<Product> => {
@@ -122,11 +123,11 @@ const ProductDetailPage: React.FC = () => {
       "slug" in obj &&
       "name" in obj &&
       "price" in obj &&
-      typeof (obj as any).slug === "string" &&
-      typeof (obj as any).name === "string" &&
-      (typeof (obj as any).id === "string" ||
-        typeof (obj as any).id === "number") &&
-      typeof (obj as any).price === "number"
+      typeof (obj as Product).slug === "string" &&
+      typeof (obj as Product).name === "string" &&
+      (typeof (obj as Product).id === "string" ||
+        typeof (obj as Product).id === "number") &&
+      typeof (obj as Product).price === "number"
     );
   }
 
@@ -198,7 +199,7 @@ const ProductDetailPage: React.FC = () => {
               Product Not Found
             </h2>
             <p className="text-gray-600 mb-6">
-              The product you're looking for doesn't exist or has been removed.
+              The product you&apos;re looking for doesn&apos;t exist or has been removed.
             </p>
             <button
               onClick={handleGoBack}
@@ -263,8 +264,9 @@ const ProductDetailPage: React.FC = () => {
                         : "border-gray-200 hover:border-gray-300"
                     }`}
                   >
-                    <img
+                    <Image
                       src={image}
+                      draggable={false}
                       alt={`${product.name} view ${index + 1}`}
                       className="w-full h-full object-cover"
                     />

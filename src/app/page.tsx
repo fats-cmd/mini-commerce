@@ -6,7 +6,6 @@ import ProductGrid from "@/components/Product/ProductGrid";
 import ReactQueryProvider from "@/Providers/ReactQueryProvider";
 import SearchBar from "@/components/SearchBar";
 
-
 import { useSearch } from "@/context/SearchContext";
 
 const Page = () => {

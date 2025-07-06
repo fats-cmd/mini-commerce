@@ -2,7 +2,7 @@
 
 import React, { useState } from 'react';
 import { useRouter } from 'next/navigation';
-import { ArrowLeft, ShoppingBag, CreditCard, Lock } from 'lucide-react';
+import { ArrowLeft, ShoppingBag,CreditCard, Lock } from 'lucide-react';
 
 import useCartStore, { CartItem } from '@/stores/useCartStore';
 import CartItemComponent from '@/components/CartItem';
@@ -78,7 +78,6 @@ const CartPage: React.FC = () => {
     updateQuantity, 
     clearCart,
     getTotalItems,
-    // getTotalPrice,
     error 
   } = useCartStore();
 

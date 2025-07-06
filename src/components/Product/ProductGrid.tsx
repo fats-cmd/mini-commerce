@@ -10,7 +10,7 @@ interface ProductGridProps {
   search: string;
 }
 
-const ProductGrid: React.FC<ProductGridProps> = ({ search }) => {
+const ProductGrid: React.FC<ProductGridProps> = ({ search}) => {
   const {
     data: products,
     isLoading,

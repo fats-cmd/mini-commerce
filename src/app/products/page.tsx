@@ -1,67 +1,30 @@
-"use client";
+'use client';
 
-import React, { useState } from "react";
-import useProducts from "@/hooks/useProducts";
-import ProductCard from "@/components/Product/ProductCard";
+import React from 'react';
+import { useQuery } from '@tanstack/react-query';
+import { Product } from '@/stores/useCartStore';
+import ProductGrid from '@/components/Product/ProductGrid';
 
-const getCategories = (products: any[]) => {
-  const cats = new Set<string>();
-  products.forEach((p) => {
-    if (p.category) cats.add(p.category);
-  });
-  return Array.from(cats);
+const fetchProducts = async (): Promise<Product[]> => {
+  const res = await fetch('/data/products.json');
+  if (!res.ok) throw new Error('Failed to fetch products');
+  const products = await res.json();
+  return products.map((p: { price: string | number } & Omit<Product, 'price'>) => ({
+    ...p,
+    price: typeof p.price === 'string' ? Number(p.price.replace(/[^\d.]/g, '')) : p.price
+  }));
 };
 
-import Layout from "@/components/Layout/layout";
-
 const ProductsPage: React.FC = () => {
-  const { data: products = [], isLoading, isError } = useProducts();
-  const [activeTab, setActiveTab] = useState<string>("");
+  const { data: products = [], isLoading, error } = useQuery<Product[], Error>({
+    queryKey: ['products'],
+    queryFn: fetchProducts,
+    staleTime: 5 * 60 * 1000,
+    retry: 3,
+    retryDelay: (attemptIndex) => Math.min(1000 * 2 ** attemptIndex, 30000),
+  });
 
-  const categories = getCategories(products);
-  const filtered = activeTab
-    ? products.filter((p: any) => p.category === activeTab)
-    : products;
-
-  React.useEffect(() => {
-    if (categories.length && !activeTab) setActiveTab(categories[0]);
-  }, [categories, activeTab]);
-
-  return (
-    <Layout>
-      <div className="max-w-7xl mx-auto px-4 py-8">
-        <h1 className="text-3xl font-bold mb-6 text-center">All Products</h1>
-        <div className="flex flex-wrap gap-2 justify-center mb-8">
-          {categories.map((cat) => (
-            <button
-              key={cat}
-              onClick={() => setActiveTab(cat)}
-              className={`px-4 py-2 rounded-full font-semibold border transition-colors duration-200 text-sm ${
-                activeTab === cat
-                  ? "bg-orange-500 text-white border-orange-500"
-                  : "bg-white text-gray-700 border-gray-300 hover:bg-orange-50"
-              }`}
-            >
-              {cat}
-            </button>
-          ))}
-        </div>
-        {isLoading ? (
-          <div className="text-center py-12 text-lg">Loading products...</div>
-        ) : isError ? (
-          <div className="text-center py-12 text-red-500">
-            Failed to load products.
-          </div>
-        ) : (
-          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
-            {filtered.map((product: any) => (
-              <ProductCard key={product.slug} {...product} />
-            ))}
-          </div>
-        )}
-      </div>
-    </Layout>
-  );
+  return <ProductGrid search=''/>;
 };
 
 export default ProductsPage;

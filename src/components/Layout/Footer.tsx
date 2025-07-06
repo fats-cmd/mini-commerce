@@ -9,7 +9,6 @@ import {
   Phone,
   MapPin,
   Clock,
-  CreditCard,
   Shield,
   Truck,
   RotateCcw,
@@ -293,8 +292,8 @@ const Footer: React.FC = () => {
               <p className="text-gray-400 text-sm">
                 © {currentYear} MiniBuy. All rights reserved.
                 <span className="inline-flex items-center gap-1 ml-2">
-                  Made with <Heart size={14} className="text-red-500" /> in
-                  Nigeria
+                Made with <Heart size={14} className="text-red-500" /> in
+                Nigeria
                 </span>
               </p>
             </div>
