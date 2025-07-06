@@ -4,7 +4,7 @@ A modern, responsive e-commerce application built with Next.js 14, TypeScript, a
 
 ## 🚀 Live Demo
 
-[View Live Demo](https://mini-commerce.vercel.app)
+[View Live Demo](https://mini-commerce-wine-alpha.vercel.app/)
 
 ## 📋 Project Overview
 
@@ -242,7 +242,7 @@ This project is licensed under the MIT License.
 
 - GitHub: [@fats-cmd]
 - LinkedIn: [https://www.linkedin.com/in/ronald-okpara-58a5652b8/]
-[View Live Demo](https://mini-commerce.vercel.app)
+[View Live Demo](https://mini-commerce-wine-alpha.vercel.app/)
 
 
 ---
