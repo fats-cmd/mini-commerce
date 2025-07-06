@@ -38,14 +38,6 @@ const Footer: React.FC = () => {
     { name: "Track Order", href: "/track" },
   ];
 
-  const categories = [
-    { name: "Electronics", href: "/electronics" },
-    { name: "Fashion", href: "/fashion" },
-    { name: "Home & Garden", href: "/home" },
-    { name: "Sports", href: "/sports" },
-    { name: "Books", href: "/books" },
-  ];
-
   const socialLinks = [
     {
       icon: Facebook,
@@ -166,7 +158,7 @@ const Footer: React.FC = () => {
                 </h2>
                 <p className="text-gray-400 leading-relaxed mb-6">
                   Your one-stop destination for quality products at unbeatable
-                  prices. We're committed to providing exceptional shopping
+                  prices. We&apos;re committed to providing exceptional shopping
                   experiences with fast shipping and excellent customer service.
                 </p>
               </div>
@@ -292,8 +284,8 @@ const Footer: React.FC = () => {
               <p className="text-gray-400 text-sm">
                 © {currentYear} MiniBuy. All rights reserved.
                 <span className="inline-flex items-center gap-1 ml-2">
-                Made with <Heart size={14} className="text-red-500" /> in
-                Nigeria
+                  Made with <Heart size={14} className="text-red-500" /> in
+                  Nigeria
                 </span>
               </p>
             </div>

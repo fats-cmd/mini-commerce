@@ -1,5 +1,5 @@
 "use client";
-import React, { useEffect } from "react";
+import React from "react";
 
 import ProductCard from "@/components/Product/ProductCard";
 import { AlertCircle, RefreshCw } from "lucide-react";
@@ -10,7 +10,7 @@ interface ProductGridProps {
   search: string;
 }
 
-const ProductGrid: React.FC<ProductGridProps> = ({ search}) => {
+const ProductGrid: React.FC<ProductGridProps> = ({ search }) => {
   const {
     data: products,
     isLoading,
@@ -92,10 +92,10 @@ const ProductGrid: React.FC<ProductGridProps> = ({ search}) => {
   let productList = Array.isArray(products) ? products : [];
   if (search.trim()) {
     const s = search.trim().toLowerCase();
-    productList = productList.filter((p: any) =>
+    productList = productList.filter((p) =>
       [p.name, p.description, p.category]
         .filter(Boolean)
-        .some((field) => field.toLowerCase().includes(s))
+        .some((field) => field.toLowerCase().includes(s)),
     );
   }
 
@@ -112,7 +112,9 @@ const ProductGrid: React.FC<ProductGridProps> = ({ search}) => {
           </span>
         </div>
         <div className="flex items-center gap-1">
-          <span className="text-xs dark:text-white text-gray-500">Sort by:</span>
+          <span className="text-xs dark:text-white text-gray-500">
+            Sort by:
+          </span>
           <select className="text-xs border border-gray-300 rounded-lg px-2 py-1 focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-transparent">
             <option>Popular</option>
             <option>Price: Low to High</option>
@@ -124,30 +126,28 @@ const ProductGrid: React.FC<ProductGridProps> = ({ search}) => {
 
       {/* Products Grid */}
       <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3">
-        {productList
-          .slice(0, visibleCount)
-          .map((product: any, index: number) => (
-            <div
-              key={product.slug || index}
-              style={{
-                animationDelay: `${index * 50}ms`,
-              }}
-              className="animate-fade-in-up"
-            >
-              <ProductCard
-                name={product.name}
-                price={product.price}
-                description={product.description}
-                image={product.image}
-                originalPrice={product.originalPrice}
-                rating={product.rating}
-                reviews={product.reviews}
-                discount={product.discount}
-                isNew={product.isNew}
-                small
-              />
-            </div>
-          ))}
+        {productList.slice(0, visibleCount).map((product, index: number) => (
+          <div
+            key={product.slug || index}
+            style={{
+              animationDelay: `${index * 50}ms`,
+            }}
+            className="animate-fade-in-up"
+          >
+            <ProductCard
+              name={product.name}
+              price={product.price}
+              description={product.description}
+              image={product.image}
+              originalPrice={product.originalPrice}
+              rating={product.rating}
+              reviews={product.reviews}
+              discount={product.discount}
+              isNew={product.isNew}
+              small
+            />
+          </div>
+        ))}
       </div>
 
       {/* Load More Button */}

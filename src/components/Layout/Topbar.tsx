@@ -9,16 +9,6 @@ import {
 } from "react-icons/fa";
 import { create } from "zustand";
 
-type DropdownState = {
-  langOpen: boolean;
-  setLangOpen: (open: boolean) => void;
-};
-
-const useDropdownStore = create<DropdownState>((set) => ({
-  langOpen: false,
-  setLangOpen: (open) => set({ langOpen: open }),
-}));
-
 type LangDropdownState = {
   langOpen: boolean;
   selected: string;

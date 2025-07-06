@@ -1,6 +1,7 @@
 import React from "react";
 import { Plus, Minus, Trash2 } from "lucide-react";
 import { CartItem as CartItemType } from "@/stores/useCartStore";
+import Image from "next/image";
 
 interface CartItemProps {
   item: CartItemType;
@@ -23,9 +24,11 @@ const CartItem: React.FC<CartItemProps> = ({
     >
       {/* Product Image */}
       <div className="flex-shrink-0 w-20 h-20 bg-gray-100 rounded-lg overflow-hidden">
-        <img
+        <Image
           src={item.image}
           alt={item.name}
+          width={80}
+          height={80}
           className="w-full h-full object-cover"
         />
       </div>

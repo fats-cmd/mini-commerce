@@ -27,7 +27,7 @@ const fetchProductBySlug = async (slug: string): Promise<Product> => {
 
   if (!Array.isArray(products)) throw new Error("Invalid products data");
   const product = (products as Product[]).find(
-    (p) => typeof p.slug === "string" && p.slug === slug
+    (p) => typeof p.slug === "string" && p.slug === slug,
   );
   if (!product) throw new Error("Product not found");
 
@@ -199,7 +199,8 @@ const ProductDetailPage: React.FC = () => {
               Product Not Found
             </h2>
             <p className="text-gray-600 mb-6">
-              The product you&apos;re looking for doesn&apos;t exist or has been removed.
+              The product you&apos;re looking for doesn&apos;t exist or has been
+              removed.
             </p>
             <button
               onClick={handleGoBack}
@@ -246,10 +247,16 @@ const ProductDetailPage: React.FC = () => {
           {/* Product Images */}
           <div className="space-y-4">
             <div className="aspect-square overflow-hidden rounded-lg bg-gray-100">
-              <img
+              <Image
                 src={productImages[selectedImage]}
                 alt={product.name}
                 className="w-full h-full object-cover"
+                width={550}
+                height={380}
+                layout="responsive"
+                objectFit="cover"
+                objectPosition="center"
+                priority
               />
             </div>
             {productImages.length > 1 && (

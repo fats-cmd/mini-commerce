@@ -58,7 +58,7 @@ const ProductCard: React.FC<ProductCardProps> = memo(
         // create a simple hash from the slug for unique ID
         id = Array.from(productSlug).reduce(
           (acc, char) => acc + char.charCodeAt(0),
-          0
+          0,
         );
       }
       addItem(
@@ -77,7 +77,7 @@ const ProductCard: React.FC<ProductCardProps> = memo(
           reviews: reviews ?? 124,
           category: "",
         },
-        1
+        1,
       );
     }, [
       addItem,
@@ -260,7 +260,7 @@ const ProductCard: React.FC<ProductCardProps> = memo(
                 {typeof originalPrice === "string"
                   ? (() => {
                       const op = parseFloat(
-                        originalPrice.replace(/[^\d.]/g, "")
+                        originalPrice.replace(/[^\d.]/g, ""),
                       );
                       return !isNaN(op) ? `$${op.toFixed(2)}` : "N/A";
                     })()
@@ -288,7 +288,7 @@ const ProductCard: React.FC<ProductCardProps> = memo(
         <div className="absolute inset-0 rounded-2xl border-2 border-transparent group-hover:border-orange-200 transition-all duration-300 pointer-events-none" />
       </div>
     );
-  }
+  },
 );
 
 ProductCard.displayName = "ProductCard";

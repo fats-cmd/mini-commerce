@@ -7,6 +7,8 @@ import { Inter } from "next/font/google";
 import ThemeToggleButton from "@/components/ThemeToggleButton";
 import useCartStore from "@/stores/useCartStore";
 import Logo from "../Logos/Logo";
+import { useSearch } from "@/context/SearchContext";
+import useProducts from "@/hooks/useProducts";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -20,19 +22,19 @@ const links = [
 ];
 
 const Navbar = () => {
-  const { search, setSearch } = require("@/context/SearchContext").useSearch();
+  const { search, setSearch } = useSearch();
   const [showDropdown, setShowDropdown] = useState(false);
-  const { data: products } = require("@/hooks/useProducts").default();
+  const { data: products } = useProducts();
   const filtered =
     search.trim() && Array.isArray(products)
-      ? products.filter((p: any) =>
-          p.name.toLowerCase().includes(search.trim().toLowerCase())
+      ? products.filter((p) =>
+          p.name.toLowerCase().includes(search.trim().toLowerCase()),
         )
       : [];
 
   const totalItemsInCart = useCartStore((state) => state.getTotalItems());
   const [mounted, setMounted] = React.useState(false);
-  
+
   React.useEffect(() => {
     setMounted(true);
   }, []);
@@ -55,7 +57,7 @@ const Navbar = () => {
           />
           {showDropdown && filtered.length > 0 && (
             <div className="absolute left-0 right-0 mt-1 bg-card border border-border rounded-lg shadow-lg z-50 max-h-64 overflow-y-auto">
-              {filtered.map((p: any) => (
+              {filtered.map((p) => (
                 <Link
                   key={p.slug}
                   href={`/product/${p.slug}`}

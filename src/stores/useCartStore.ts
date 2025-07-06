@@ -56,7 +56,7 @@ const useCartStore = create<CartStore>()(
       addItem: (product: Product, quantity: number = 1) => {
         set((state) => {
           const existingItem = state.items.find(
-            (item) => item.id === product.id
+            (item) => item.id === product.id,
           );
 
           if (existingItem) {
@@ -64,7 +64,7 @@ const useCartStore = create<CartStore>()(
               items: state.items.map((item) =>
                 item.id === product.id
                   ? { ...item, quantity: item.quantity + quantity }
-                  : item
+                  : item,
               ),
               error: null,
             };
@@ -92,7 +92,7 @@ const useCartStore = create<CartStore>()(
 
         set((state) => ({
           items: state.items.map((item) =>
-            item.id === productId ? { ...item, quantity } : item
+            item.id === productId ? { ...item, quantity } : item,
           ),
           error: null,
         }));
@@ -118,7 +118,7 @@ const useCartStore = create<CartStore>()(
       getTotalPrice: () => {
         return get().items.reduce(
           (total, item) => total + item.price * item.quantity,
-          0
+          0,
         );
       },
 
@@ -139,18 +139,18 @@ const useCartStore = create<CartStore>()(
         // Don't persist loading and error states
       }),
       version: 1,
-      migrate: (persistedState: any, version: number) => {
+      migrate: (persistedState: unknown, version: number) => {
         // this is to handle migration if needed in the future
         if (version === 0) {
           // Migration logic for version 0 to 1
           return {
-            ...persistedState,
-            items: persistedState.items || [],
+            ...(persistedState as CartStore),
+            items: (persistedState as CartStore).items || [],
           };
         }
         return persistedState;
       },
-      onRehydrateStorage: (state) => {
+      onRehydrateStorage: () => {
         return (state, error) => {
           if (error) {
             console.error("Failed to rehydrate cart state:", error);
@@ -158,8 +158,8 @@ const useCartStore = create<CartStore>()(
           }
         };
       },
-    }
-  )
+    },
+  ),
 );
 
 export default useCartStore;

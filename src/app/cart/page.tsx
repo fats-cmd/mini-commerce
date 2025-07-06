@@ -1,11 +1,11 @@
-'use client';
+"use client";
 
-import React, { useState } from 'react';
-import { useRouter } from 'next/navigation';
-import { ArrowLeft, ShoppingBag,CreditCard, Lock } from 'lucide-react';
+import React, { useState } from "react";
+import { useRouter } from "next/navigation";
+import { ArrowLeft, ShoppingBag, CreditCard, Lock } from "lucide-react";
 
-import useCartStore, { CartItem } from '@/stores/useCartStore';
-import CartItemComponent from '@/components/CartItem';
+import useCartStore, { CartItem } from "@/stores/useCartStore";
+import CartItemComponent from "@/components/CartItem";
 
 interface CartSummaryProps {
   onCheckout: () => void;
@@ -13,7 +13,7 @@ interface CartSummaryProps {
 
 const CartSummary: React.FC<CartSummaryProps> = ({ onCheckout }) => {
   const { getTotalItems, getTotalPrice } = useCartStore();
-  
+
   const subtotal = getTotalPrice();
   const shipping = subtotal > 100 ? 0 : 9.99;
   const tax = subtotal * 0.08; // 8% tax
@@ -21,17 +21,21 @@ const CartSummary: React.FC<CartSummaryProps> = ({ onCheckout }) => {
 
   return (
     <div className="bg-white rounded-lg shadow-sm border p-6 sticky top-8">
-      <h2 className="text-lg font-semibold text-gray-900 mb-4">Order Summary</h2>
-      
+      <h2 className="text-lg font-semibold text-gray-900 mb-4">
+        Order Summary
+      </h2>
+
       <div className="space-y-3 mb-4">
         <div className="flex justify-between">
-          <span className="text-gray-600">Subtotal ({getTotalItems()} items)</span>
+          <span className="text-gray-600">
+            Subtotal ({getTotalItems()} items)
+          </span>
           <span className="text-gray-900">${subtotal.toFixed(2)}</span>
         </div>
         <div className="flex justify-between">
           <span className="text-gray-600">Shipping</span>
           <span className="text-gray-900">
-            {shipping === 0 ? 'Free' : `$${shipping.toFixed(2)}`}
+            {shipping === 0 ? "Free" : `$${shipping.toFixed(2)}`}
           </span>
         </div>
         <div className="flex justify-between">
@@ -41,7 +45,9 @@ const CartSummary: React.FC<CartSummaryProps> = ({ onCheckout }) => {
         <div className="border-t pt-3">
           <div className="flex justify-between">
             <span className="text-lg font-semibold text-gray-900">Total</span>
-            <span className="text-lg font-bold text-gray-900">${total.toFixed(2)}</span>
+            <span className="text-lg font-bold text-gray-900">
+              ${total.toFixed(2)}
+            </span>
           </div>
         </div>
       </div>
@@ -72,23 +78,17 @@ const CartSummary: React.FC<CartSummaryProps> = ({ onCheckout }) => {
 
 const CartPage: React.FC = () => {
   const router = useRouter();
-  const { 
-    items, 
-    removeItem, 
-    updateQuantity, 
-    clearCart,
-    getTotalItems,
-    error 
-  } = useCartStore();
+  const { items, removeItem, updateQuantity, clearCart, getTotalItems, error } =
+    useCartStore();
 
   const [isClearing, setIsClearing] = useState(false);
   const [removingItems, setRemovingItems] = useState<Set<number>>(new Set());
 
   const handleRemoveItem = (productId: number) => {
-    setRemovingItems(prev => new Set(prev).add(productId));
+    setRemovingItems((prev) => new Set(prev).add(productId));
     setTimeout(() => {
       removeItem(productId);
-      setRemovingItems(prev => {
+      setRemovingItems((prev) => {
         const newSet = new Set(prev);
         newSet.delete(productId);
         return newSet;
@@ -98,17 +98,17 @@ const CartPage: React.FC = () => {
 
   const handleClearCart = async () => {
     setIsClearing(true);
-    await new Promise(resolve => setTimeout(resolve, 500));
+    await new Promise((resolve) => setTimeout(resolve, 500));
     clearCart();
     setIsClearing(false);
   };
 
   const handleCheckout = () => {
-    router.push('/checkout');
+    router.push("/checkout");
   };
 
   const handleContinueShopping = () => {
-    router.push('/');
+    router.push("/");
   };
 
   const handleUpdateQuantity = (productId: number, newQuantity: number) => {
@@ -160,9 +160,11 @@ const CartPage: React.FC = () => {
               <div className="w-24 h-24 bg-gray-100 rounded-full flex items-center justify-center mx-auto mb-6">
                 <ShoppingBag className="w-12 h-12 text-gray-400" />
               </div>
-              <h2 className="text-2xl font-bold text-gray-900 mb-2">Your cart is empty</h2>
+              <h2 className="text-2xl font-bold text-gray-900 mb-2">
+                Your cart is empty
+              </h2>
               <p className="text-gray-600 mb-8">
-                Looks like you haven't added anything to your cart yet.
+                Looks like you haven&apos;t added anything to your cart yet.
               </p>
               <button
                 onClick={handleContinueShopping}
@@ -185,7 +187,8 @@ const CartPage: React.FC = () => {
           <div>
             <h1 className="text-3xl font-bold text-gray-900">Shopping Cart</h1>
             <p className="text-gray-600 mt-1">
-              {getTotalItems()} {getTotalItems() === 1 ? 'item' : 'items'} in your cart
+              {getTotalItems()} {getTotalItems() === 1 ? "item" : "items"} in
+              your cart
             </p>
           </div>
           <div className="flex items-center space-x-4">
@@ -194,7 +197,7 @@ const CartPage: React.FC = () => {
               disabled={isClearing}
               className="text-red-500 hover:text-red-700 font-medium transition-colors disabled:opacity-50"
             >
-              {isClearing ? 'Clearing...' : 'Clear Cart'}
+              {isClearing ? "Clearing..." : "Clear Cart"}
             </button>
             <button
               onClick={handleContinueShopping}
