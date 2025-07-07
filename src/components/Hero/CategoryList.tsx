@@ -88,7 +88,7 @@ const CategoryList: React.FC = () => (
         >
           {/* Icon container with gradient background */}
           <div
-            className={`w-12 h-12 rounded-xl bg-gradient-to-br ${cat.color} flex items-center justify-center text-white shadow-lg group-hover:scale-110 transition-transform duration-300`}
+            className={` p-3 rounded-xl bg-gradient-to-br ${cat.color} flex items-center justify-center text-white shadow-lg group-hover:scale-110 transition-transform duration-300`}
           >
             <span className="text-lg">{cat.icon}</span>
           </div>
