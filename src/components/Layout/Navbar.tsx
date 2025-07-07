@@ -61,7 +61,7 @@ const Navbar = () => {
                 <Link
                   key={p.slug}
                   href={`/product/${p.slug}`}
-                  className="block px-4 py-2 text-foreground hover:bg-primary/10 transition-colors"
+                  className="block px-4 py-2 text-foreground hover:bg-primary/10 transition-colors rounded-md hover:bg-orange-200 mx-3"
                   onClick={() => setShowDropdown(false)}
                 >
                   {p.name}
