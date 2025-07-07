@@ -29,7 +29,7 @@ const SearchBar: React.FC<SearchBarProps> = ({
           <input
             type="text"
             placeholder="Search products, categories, or brands"
-            className="w-full pl-10 pr-4 py-3 text-base bg-card border border-border shadow-sm outline-none text-foreground placeholder-foreground/60 focus:border-primary transition-all duration-200 rounded-full"
+            className="w-full pl-10 pr-4 py-3 dark:bg-white  dark:text-gray-900 text-base bg-card border border-border shadow-sm outline-none text-foreground placeholder-foreground/60 focus:border-primary transition-all duration-200 rounded-full"
             value={value}
             onChange={(e) => onChange(e.target.value)}
             onFocus={onFocus}

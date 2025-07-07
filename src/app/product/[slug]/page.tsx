@@ -223,7 +223,7 @@ const ProductDetailPage: React.FC = () => {
     <div className="min-h-screen bg-gray-50">
       {/* Added to Cart Notification */}
       {showAddedToCart && (
-        <div className="fixed top-4 right-4 bg-green-500 text-white px-6 py-3 rounded-lg shadow-lg z-50 flex items-center space-x-2">
+        <div className="fixed top-4 right-4 bg-orange-500 text-white px-6 py-3 rounded-lg shadow-lg z-50 flex items-center space-x-2">
           <ShoppingCart className="w-5 h-5" />
           <span>Added to cart!</span>
         </div>

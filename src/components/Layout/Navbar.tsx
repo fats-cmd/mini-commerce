@@ -56,12 +56,12 @@ const Navbar = () => {
             onBlur={() => setTimeout(() => setShowDropdown(false), 150)}
           />
           {showDropdown && filtered.length > 0 && (
-            <div className="absolute left-0 right-0 mt-1 bg-card border border-border rounded-lg shadow-lg z-50 max-h-64 overflow-y-auto">
+            <div className="absolute p-3 left-0 right-0 mt-1 bg-card border border-border rounded-lg shadow-lg z-50 max-h-64 overflow-y-auto">
               {filtered.map((p) => (
                 <Link
                   key={p.slug}
                   href={`/product/${p.slug}`}
-                  className="block px-4 py-2 text-foreground hover:bg-primary/10 transition-colors rounded-md hover:bg-orange-200 mx-3"
+                  className="block px-4 py-2 text-foreground hover:bg-primary/10 transition-colors rounded-md hover:bg-orange-200"
                   onClick={() => setShowDropdown(false)}
                 >
                   {p.name}
